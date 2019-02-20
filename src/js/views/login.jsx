@@ -47,6 +47,46 @@ export class LoggedIn extends React.Component {
 }
 
 export class LoggedOut extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			email: "",
+			password: ""
+		};
+	}
+
+	emailInput = e => {
+		this.setState({ email: e.target.value });
+	};
+
+	passwordInput = e => {
+		this.setState({ password: e.target.value });
+	};
+
+	passwordChecker = () => {
+		var ayy = /^.{6,}$/;
+		var lmao = this.state.password;
+		var result = ayy.test(lmao);
+
+		if (result) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	emailChecker = () => {
+		var ayy = /^.{6,}$/;
+		var lmao = this.state.email;
+		var result = ayy.test(lmao);
+
+		if (result) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	render() {
 		return (
 			<div className="justify-content-center align-items-center row">
@@ -59,20 +99,30 @@ export class LoggedOut extends React.Component {
 							width="72"
 							height="72"
 						/>
-						<h1 className="h3 mb-3 font-weight-normal">
+						<h1
+							className="h3 mb-3 font-weight-normal"
+							onClick={this.emailChecker}>
 							Please sign in
 						</h1>
 						<label htmlFor="inputEmail" className="sr-only">
 							Email address
 						</label>
-						<input
-							type="email"
-							id="inputEmail"
-							className="form-control"
-							placeholder="Email address"
-							required=""
-							autoFocus=""
-						/>
+						<Context.Consumer>
+							{({ store, actions }) => {
+								return (
+									<input
+										type="email"
+										id="inputEmail"
+										className="form-control"
+										placeholder="Email address"
+										required=""
+										autoFocus=""
+										onChange={this.emailInput}
+										value={this.state.email}
+									/>
+								);
+							}}
+						</Context.Consumer>
 						<label htmlFor="inputPassword" className="sr-only">
 							Password
 						</label>
@@ -82,6 +132,8 @@ export class LoggedOut extends React.Component {
 							className="form-control"
 							placeholder="Password"
 							required=""
+							onChange={this.passwordInput}
+							value={this.state.password}
 						/>
 						<div className="checkbox mb-3 mt-3">
 							<label>
@@ -92,13 +144,19 @@ export class LoggedOut extends React.Component {
 						<Context.Consumer>
 							{({ store, actions }) => {
 								return (
-									<Link to={"/login"}>
-										<button
-											className="btn btn-primary"
-											onClick={() => actions.logIn()}>
-											Log In
-										</button>
-									</Link>
+									<button
+										className="btn btn-primary"
+										onClick={e => {
+											e.preventDefault();
+											if (
+												this.passwordChecker() &&
+												this.emailChecker()
+											) {
+												actions.logIn();
+											}
+										}}>
+										Log In!{" "}
+									</button>
 								);
 							}}
 						</Context.Consumer>
