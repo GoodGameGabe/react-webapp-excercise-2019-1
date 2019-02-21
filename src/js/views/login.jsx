@@ -63,7 +63,7 @@ export class LoggedOut extends React.Component {
 		this.setState({ password: e.target.value });
 	};
 
-	passwordChecker = () => {
+	Checker = () => {
 		var ayy = /^.{6,}$/;
 		var lmao = this.state.password;
 		var result = ayy.test(lmao);
@@ -73,14 +73,12 @@ export class LoggedOut extends React.Component {
 		} else {
 			return false;
 		}
-	};
+	
+		var ayy2 = /^.{6,}$/;
+		var lmao2 = this.state.email;
+		var result2 = ayy2.test(lmao2);
 
-	emailChecker = () => {
-		var ayy = /^.{6,}$/;
-		var lmao = this.state.email;
-		var result = ayy.test(lmao);
-
-		if (result) {
+		if (result2) {
 			return true;
 		} else {
 			return false;
@@ -144,19 +142,20 @@ export class LoggedOut extends React.Component {
 						<Context.Consumer>
 							{({ store, actions }) => {
 								return (
+
 									<button
 										className="btn btn-primary"
 										onClick={e => {
 											e.preventDefault();
 											if (
-												this.passwordChecker() &&
-												this.emailChecker()
+												this.Checker();
 											) {
 												actions.logIn();
 											}
 										}}>
 										Log In!{" "}
 									</button>
+
 								);
 							}}
 						</Context.Consumer>

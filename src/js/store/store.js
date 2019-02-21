@@ -219,33 +219,9 @@ const getState = ({ getStore, setStore }) => {
 				tempSession = [];
 
 				setStore({ session: tempSession });
-			},
-
-			passwordCheck: () => {
-				var ayy = /^.{6,}$/;
-				var lmao = this.state.password;
-				var result = ayy.test(lmao);
-
-				if (result) {
-					this.setState({ passwordCheck: true });
-				} else {
-					this.setState({ passwordCheck: false });
-				}
-			},
-
-			emailCheck: () => {
-				var ayy = /^.{6,}$/;
-				var lmao = this.state.email;
-				var result = ayy.test(lmao);
-
-				if (result) {
-					this.setState({ emailCheck: true });
-				} else {
-					this.setState({ emailCheck: false });
-				}
-
-				//reset the global store
 			}
+				//reset the global store
+			
 		}
 	};
 };

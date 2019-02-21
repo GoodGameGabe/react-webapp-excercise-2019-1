@@ -103,15 +103,12 @@ export class Blog extends React.Component {
 							</svg>
 						</div>
 					</div>
-<<<<<<< HEAD
-=======
 					<div className="container">
 						<div className="row no-gutters">
 							<div className="col-12 col-sm-6 col-md-8" />
 							<div className="col-6 col-md-4" />
 						</div>
 					</div>
->>>>>>> 1d4a5f32c4deeae1895b694034878d58a913d4a7
 				</div>
 				<main role="main" className="container">
 					<div className="row">
